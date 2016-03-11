@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{1F2C6FB6-A0EA-38BE-83AC-89C5CCC8C292}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\GitHub_repos\Tracker-OSVR\build_x64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\GitHub_repos\Tracker-OSVR\build_x64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\GitHub_repos\Tracker-OSVR\build_x64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\GitHub_repos\Tracker-OSVR\build_x64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\GitHub_repos\Tracker-OSVR\Tracker-OSVR\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/GitHub_repos/Tracker-OSVR/Tracker-OSVR/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/GitHub_repos/Tracker-OSVR/Tracker-OSVR -BC:/GitHub_repos/Tracker-OSVR/build_x64 --check-stamp-file C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/GitHub_repos/Tracker-OSVR/Tracker-OSVR/CMakeLists.txt;C:\GitHub_repos\Tracker-OSVR\Tracker-OSVR\CMakeLists.txt;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeCCompiler.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigVersion.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfig.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityConfigVersion.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityConfig.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets-debug.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets-relwithdebinfo.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrTargets.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrTargets-relwithdebinfo.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigInstalledBoost.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\CMakeBoostHelper.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\GetMSVCVersion.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindBoost.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindBoost.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigInstalledOpenCV.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrAddPlugin.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeParseArguments.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConvertJson.cmake;C:\GitHub_repos\Tracker-OSVR\Tracker-OSVR\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/GitHub_repos/Tracker-OSVR/Tracker-OSVR/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/GitHub_repos/Tracker-OSVR/Tracker-OSVR -BC:/GitHub_repos/Tracker-OSVR/build_x64 --check-stamp-file C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/GitHub_repos/Tracker-OSVR/Tracker-OSVR/CMakeLists.txt;C:\GitHub_repos\Tracker-OSVR\Tracker-OSVR\CMakeLists.txt;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeCCompiler.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigVersion.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfig.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityConfigVersion.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityConfig.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets-debug.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets-relwithdebinfo.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrTargets.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrTargets-relwithdebinfo.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigInstalledBoost.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\CMakeBoostHelper.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\GetMSVCVersion.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindBoost.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindBoost.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigInstalledOpenCV.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrAddPlugin.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeParseArguments.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConvertJson.cmake;C:\GitHub_repos\Tracker-OSVR\Tracker-OSVR\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/GitHub_repos/Tracker-OSVR/Tracker-OSVR/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/GitHub_repos/Tracker-OSVR/Tracker-OSVR -BC:/GitHub_repos/Tracker-OSVR/build_x64 --check-stamp-file C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/GitHub_repos/Tracker-OSVR/Tracker-OSVR/CMakeLists.txt;C:\GitHub_repos\Tracker-OSVR\Tracker-OSVR\CMakeLists.txt;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeCCompiler.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigVersion.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfig.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityConfigVersion.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityConfig.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets-debug.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets-relwithdebinfo.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrTargets.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrTargets-relwithdebinfo.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigInstalledBoost.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\CMakeBoostHelper.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\GetMSVCVersion.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindBoost.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindBoost.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigInstalledOpenCV.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrAddPlugin.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeParseArguments.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConvertJson.cmake;C:\GitHub_repos\Tracker-OSVR\Tracker-OSVR\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/GitHub_repos/Tracker-OSVR/Tracker-OSVR/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -HC:/GitHub_repos/Tracker-OSVR/Tracker-OSVR -BC:/GitHub_repos/Tracker-OSVR/build_x64 --check-stamp-file C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/GitHub_repos/Tracker-OSVR/Tracker-OSVR/CMakeLists.txt;C:\GitHub_repos\Tracker-OSVR\Tracker-OSVR\CMakeLists.txt;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeCCompiler.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\3.4.3\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCommonLanguageInclude.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigVersion.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfig.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityConfigVersion.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityConfig.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets-debug.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\libfunctionality\libfunctionalityTargets-relwithdebinfo.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrTargets.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrTargets-relwithdebinfo.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigInstalledBoost.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\CMakeBoostHelper.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\GetMSVCVersion.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindBoost.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\FindBoost.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConfigInstalledOpenCV.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrAddPlugin.cmake;C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeParseArguments.cmake;C:\GitHub_repos\OSVR-Core-Snapshot-v0.6-1115-g26bc354-build245-vs12-64bit\lib\cmake\osvr\osvrConvertJson.cmake;C:\GitHub_repos\Tracker-OSVR\Tracker-OSVR\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\GitHub_repos\Tracker-OSVR\build_x64\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/GitHub_repos/Tracker-OSVR/build_x64/ZERO_CHECK.vcxproj">
+      <Project>10BD8743-82A3-3297-B0AB-4D48CFA235CA</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/GitHub_repos/Tracker-OSVR/build_x64/com_samaust_tracker_osvr.vcxproj">
+      <Project>45C948EB-8FB0-388F-AD94-1937226FA1DA</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,22 @@
+{
+  "deviceVendor": "NaturalPoint",
+  "deviceName": "TrackIR 4",
+  "author": "Samuel Austin <samaust@hotmail.com>",
+  "version": 1,
+  "lastModified": "2016-03-10T20:00:00.000Z",
+  "interfaces": {
+    "tracker": {
+      "count": 1,
+      "position": true,
+      "orientation": true
+    }
+  },
+  "semantic": {
+    "hmd": {
+      "$target": "tracker/0"
+    }
+  },
+  "automaticAliases": {
+    "/me/head": "semantic/hmd"
+  }
+}

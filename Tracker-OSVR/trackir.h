@@ -29,7 +29,7 @@ class trackir
 		INPCameraCollection *pCameraCollection;
 		INPCamera *pCamera;
 		INPCameraFrame *pFrame;
-		INPVector *pVector;
+		INPVector2 *pVector;
 
 	private:
 		osvr::pluginkit::DeviceToken m_dev;

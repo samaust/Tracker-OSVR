@@ -25,8 +25,15 @@
 
 #include "trackir.h"
 
+#define DEGTORADDIV2 0.00872664625997165
+
 trackir::trackir(OSVR_PluginRegContext ctx)
 {
+	HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
+	if (FAILED(hr)) {
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: failed to initialize the COM library for use by the calling thread" << std::endl;
+	}
+
 	/// Create the initialization options
 	OSVR_DeviceInitOptions opts = osvrDeviceCreateInitOptions(ctx);
 
@@ -44,11 +51,6 @@ trackir::trackir(OSVR_PluginRegContext ctx)
 
 	initialized = false;
 
-/*	pCameraCollection = new INPCameraCollection;
-	pCamera = new INPCamera;
-	pFrame = new INPCameraFrame;
-	pVector = new INPVector;
-*/
 	zero_vx.dblVal = 0.0f;
 	zero_vy.dblVal = 0.0f;
 	zero_vz.dblVal = 0.0f;
@@ -63,69 +65,146 @@ trackir::trackir(OSVR_PluginRegContext ctx)
 	vpitch.dblVal = 0.0f;
 	vroll.dblVal = 0.0f;
 
-	m_x = 0;
-	m_y = 0;
-	m_z = 0;
-	m_yaw = 0;
-	m_pitch = 0;
-	m_roll = 0;
+	m_x = 0.0f;
+	m_y = 0.0f;
+	m_z = 0.0f;
+	m_yaw = 0.0f;
+	m_pitch = 0.0f;
+	m_roll = 0.0f;
+
+	pCamera = NULL;
+
+	initTrackir();
+	flushFrames();
 }
 
 trackir::~trackir(void)
 {
-/*	if (pCameraCollection)
-		delete pCameraCollection;
-	if (pCamera)
-		delete pCamera;
-	if (pFrame)
-		delete pFrame;
-	if (pVector)
-		delete = pVector;
-*/
+	uninitTrackir();
+	CoUninitialize();
 }
 
 HRESULT trackir::initTrackir(float X, float Y, float Z, float Yaw, float Pitch, float Roll)
 {
+	std::cout << "[Tracker-OSVR] Initializing TrackIR..." << std::endl;
 	// TODO : deallocate stuff if the functions fails
 	LONG count = 0;
 
 	// create CameraCollection and Vector objects:
-
 	HRESULT hr = CoCreateInstance(__uuidof(NPCameraCollection), NULL, CLSCTX_ALL,
 						  __uuidof(INPCameraCollection), (void **) &pCameraCollection);
 	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: create CameraCollection failed, return code = ";
+		if (hr == REGDB_E_CLASSNOTREG)
+		{
+			std::cerr << "REGDB_E_CLASSNOTREG" << std::endl;
+		}
+		else if (hr == CLASS_E_NOAGGREGATION)
+		{
+			std::cerr << "CLASS_E_NOAGGREGATION" << std::endl;
+		}
+		else if (hr == E_NOINTERFACE)
+		{
+			std::cerr << "E_NOINTERFACE" << std::endl;
+		}
+		else if (hr == E_POINTER)
+		{
+			std::cerr << "E_POINTER" << std::endl;
+		}
+		else
+		{
+			std::cerr << "unknown return code" << std::endl;
+		}
+	
 		return -1;
+	}
 
 	hr = CoCreateInstance(__uuidof(NPVector), NULL, CLSCTX_ALL,
-							__uuidof(INPVector), (void **) &pVector);
+							// __uuidof(INPVector), (void **) &pVector); // For use with default reflector
+						    __uuidof(INPVector2), (void **)&pVector); // For use with customized reflector (i.e. trackclip pro)
 	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: create Vector failed, return code = " << hr << std::endl;
 		return -1;
+	}
 
+	// Ajust vector distances for trackclip pro
+	// Will probably not work well because the trackclip pro layout is different than the vector layout
+	// and distol is calculated automatically assuming a vector shape
+	VARIANT dist01; dist01.dblVal = 50.8f;
+	VARIANT dist02; dist02.dblVal = 190.5f;
+	VARIANT dist12; dist12.dblVal = 114.3f;
+	
+	pVector->put_dist01(dist01);
+	pVector->put_dist02(dist02);
+	pVector->put_dist12(dist12);
+	
 	// find all the cameras:
 	hr = pCameraCollection->Enum();
 	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: cameras enumeration failed, return code = " << hr << std::endl;
 		return -1;
+	}
 
 	hr = pCameraCollection->get_Count(&count);
 	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: get count of CameraCollection failed, return code = " << hr << std::endl;
 		return -1;
+	}
+	//std::cerr << "[Tracker-OSVR] info initializing TrackIR:CameraCollection count = " << count << std::endl;
 
-	if (count < 1) 
+	if (count < 1)
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: CameraCollection count smaller than 1, return code = " << hr << std::endl;
 		return -1;
+	}
 
 	// get the first camera
 	hr = pCameraCollection->Item(0, &pCamera);
 	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: failed to get first camera, return code = " << hr << std::endl;
 		return -1;
+	}
 
-	// turn on illumination LEDs
-	hr = pCamera->SetLED(NP_LED_ONE, VARIANT_TRUE);
+	// turn on blue LEDS. Assuming use of trackclip pro that does not need the illum light
+	hr = pCamera->SetLED(NP_LED_ONE, VARIANT_FALSE);
 	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: failed to turn off LED one, return code = " << hr << std::endl;
 		return -1;
-	
+	}
+
+	hr = pCamera->SetLED(NP_LED_TWO, VARIANT_FALSE);
+	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: failed to turn off LED two, return code = " << hr << std::endl;
+		return -1;
+	}
+
+	hr = pCamera->SetLED(NP_LED_THREE, VARIANT_FALSE);
+	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: failed to turn off LED three, return code = " << hr << std::endl;
+		return -1;
+	}
+
 	hr = pCamera->SetLED(NP_LED_FOUR, VARIANT_TRUE);
 	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: failed to turn on LED four, return code = " << hr << std::endl;
 		return -1;
+	}
+
+	hr = pCamera->Open();
+	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: failed to open camera, return code = " << hr << std::endl;
+		return -1;
+	}
 
 //	VARIANT var;
 //	var.boolVal = VARIANT_TRUE;
@@ -133,21 +212,23 @@ HRESULT trackir::initTrackir(float X, float Y, float Z, float Yaw, float Pitch, 
 //	if (FAILED(hr))
 //		return -1;
 
-	hr = pCamera->Open();
-	if (FAILED(hr))
-		return -1;
-
 	hr = pCamera->Start();
 	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: failed to start camera, return code = " << hr << std::endl;
 		return -1;
+	}
 
 	hr = pVector->Reset();
 	if (FAILED(hr))
+	{
+		std::cerr << "[Tracker-OSVR] Error initializing TrackIR: failed to reset Vector, return code = " << hr << std::endl;
 		return -1;
+	}
 
 	initialized = true;
 
-	//trackir::resetVectorsZeros();
+	resetVectorsZeros();
 
 	m_XScale = X;
 	m_YScale = Y;
@@ -156,6 +237,10 @@ HRESULT trackir::initTrackir(float X, float Y, float Z, float Yaw, float Pitch, 
 	m_PitchScale = Pitch;
 	m_RollScale = Roll;
 
+	std::cout << "[Tracker-OSVR] scaling factors: (x, y, z) = (" << m_XScale << ", " << m_YScale << ", " << m_ZScale <<
+		"), (yaw, pitch, roll) = (" << m_YawScale << ", " << m_PitchScale << ", " << m_RollScale << ")" << std::endl;
+	std::cout << "[Tracker-OSVR] TrackIR initialized successfully" << std::endl;
+
 	return 0;
 }
 
@@ -163,15 +248,12 @@ void trackir::uninitTrackir(void) // shut everything down
 {
 	if (initialized)
 	{
-		pCamera->SetLED(NP_LED_ONE, VARIANT_FALSE);
 		pCamera->SetLED(NP_LED_FOUR, VARIANT_FALSE);
 		pCamera->Stop();
 		pCamera->Close();
-		pCamera->Release(); // added
-	
+		pCamera->Release();
 		pVector->Release();
-
-		pCameraCollection->Release(); // added
+		pCameraCollection->Release();
 
 		initialized = false;
 	}
@@ -195,7 +277,7 @@ HRESULT trackir::resetVectorsZeros(void)
 			pCamera->GetFrame(0, &pFrame);
 		}
 
-		if(pFrame!=0) // added
+		if(pFrame!=0)
 		{
 			hr = pVector->Update(pCamera, pFrame);
 			if (FAILED(hr))
@@ -241,7 +323,7 @@ HRESULT trackir::resetVectorsZeros(void)
 		}
 	}
 	else
-		trackir::initTrackir();
+		initTrackir();
 
 	return 0;
 }
@@ -291,30 +373,18 @@ OSVR_ReturnCode trackir::update() {
 
 			pFrame->Release();
 		}
-		else
-		{
-			// Camera out of sight, return centered position
-			m_x = 0.0f;
-			m_y = 0.0f;
-			m_z = 0.0f;
-			m_yaw = 0.0f;
-			m_pitch = 0.0f;
-			m_roll = 0.0f;
-		}
 	}
-	else
-		trackir::initTrackir();
 
 	// Euler to quaternion
 	// Source : http://www.euclideanspace.com/maths/geometry/rotations/conversions/eulerToQuaternion/
 	
 	// Assuming the angles are in radians.
-	double c1 = cos(m_yaw / 2);
-	double s1 = sin(m_yaw / 2);
-	double c2 = cos(m_pitch / 2);
-	double s2 = sin(m_pitch / 2);
-	double c3 = cos(m_roll / 2);
-	double s3 = sin(m_roll / 2);
+	double c1 = cos(m_yaw * DEGTORADDIV2);
+	double s1 = sin(m_yaw * DEGTORADDIV2);
+	double c2 = cos(m_pitch * DEGTORADDIV2);
+	double s2 = sin(m_pitch * DEGTORADDIV2);
+	double c3 = cos(m_roll * DEGTORADDIV2);
+	double s3 = sin(m_roll * DEGTORADDIV2);
 	double c1c2 = c1*c2;
 	double s1s2 = s1*s2;
 
@@ -323,7 +393,7 @@ OSVR_ReturnCode trackir::update() {
 	pose.translation.data[0] = m_x;
 	pose.translation.data[1] = m_y;
 	pose.translation.data[2] = m_z;
-	pose.rotation.data[0] = c1c2*c3 - s1s2*s3;;
+	pose.rotation.data[0] = c1c2*c3 - s1s2*s3;
 	pose.rotation.data[1] = c1c2*s3 + s1s2*c3;
 	pose.rotation.data[2] = s1*c2*c3 + c1*s2*s3;
 	pose.rotation.data[3] = c1*s2*c3 - s1*c2*s3;
@@ -349,5 +419,5 @@ void trackir::flushFrames(void)
 			}
 		}
 	}
-	else trackir::initTrackir();
+	else initTrackir();
 }

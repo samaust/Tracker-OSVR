@@ -27,7 +27,6 @@ osvr_add_plugin(NAME com_samaust_tracker_osvr
     SOURCES
     com_samaust_tracker_osvr.cpp
     "${CMAKE_CURRENT_BINARY_DIR}/com_samaust_tracker_osvr_json.h"
-    optitrack.h
     trackir.cpp
     trackir.h)
 
